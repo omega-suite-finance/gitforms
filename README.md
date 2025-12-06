@@ -1,243 +1,214 @@
-# Lead Capture System
+# Landing Page Contact Form
 
-🎯 **Zero-cost lead capture system** using GitHub Issues as a database.
+**Form di contatto gratuito per la tua landing page** con email automatiche.
 
-Every form submission creates a GitHub Issue, and GitHub automatically sends email notifications. No external database, no monthly costs.
+Ogni volta che qualcuno compila il form, ricevi un'email di notifica. Zero costi mensili, nessun database esterno da gestire.
 
-## Features
+## Caratteristiche
 
-- ✅ Next.js 13+ with App Router
-- ✅ TypeScript for type safety
-- ✅ Tailwind CSS for styling
-- ✅ GitHub Issues as database
-- ✅ Automatic email notifications via GitHub
-- ✅ Production-ready error handling
-- ✅ Zero external dependencies for backend
-- ✅ 100% free to run
+- ✅ Form semplice e pulito
+- ✅ Email automatiche quando ricevi un contatto
+- ✅ Next.js 13+ con App Router
+- ✅ TypeScript per sicurezza
+- ✅ Tailwind CSS per lo stile
+- ✅ Completamente gratuito
 
-## Architecture
+## Come Funziona
 
 ```
-User fills form → POST /api/contact → GitHub API → Creates Issue → GitHub sends email
+Utente compila form → Dati salvati → Email automatica inviata
 ```
 
-## Setup Instructions
+I dati vengono salvati usando GitHub come storage gratuito (funziona come un database semplice). Quando arriva un nuovo contatto, GitHub manda automaticamente un'email.
 
-### 1. Clone the repository
+## Setup Rapido
+
+### 1. Clona il repository
 
 ```bash
 git clone https://github.com/omega-suite-finance/lead-capture-system.git
 cd lead-capture-system
 ```
 
-### 2. Install dependencies
+### 2. Installa dipendenze
 
 ```bash
 npm install
 ```
 
-### 3. Configure GitHub
+### 3. Configura GitHub Token
 
-#### Create a GitHub Personal Access Token
+Per salvare i contatti hai bisogno di un GitHub token (è gratuito):
 
-1. Go to [GitHub Settings → Tokens](https://github.com/settings/tokens)
-2. Click **"Generate new token (classic)"**
-3. Give it a name: `Lead Capture System`
-4. Select scope: **`repo`** (Full control of private repositories)
-5. Click **"Generate token"**
-6. **Copy the token** (you won't see it again!)
+1. Vai su https://github.com/settings/tokens
+2. Clicca "Generate new token (classic)"
+3. Nome: `Landing Page Contact Form`
+4. Seleziona: **`repo`**
+5. Genera e copia il token
 
-#### Set up environment variables
+### 4. Configura le variabili d'ambiente
 
 ```bash
 cp .env.example .env.local
 ```
 
-Edit `.env.local` and add your values:
+Modifica `.env.local`:
 
 ```env
-GITHUB_TOKEN=ghp_your_token_here
-GITHUB_REPO=your-username/your-repo-name
+GITHUB_TOKEN=ghp_il_tuo_token_qui
+GITHUB_REPO=tuo-username/lead-capture-system
 ```
 
-### 4. Run the development server
+### 5. Avvia il server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the contact form.
+Apri http://localhost:3000 per vedere il form.
 
-### 5. Test with curl
+## Campi del Form
+
+- **Nome** (obbligatorio)
+- **Cognome** (obbligatorio)  
+- **Email** (obbligatorio)
+- **Azienda** (opzionale)
+- **Messaggio** (obbligatorio)
+
+## Test con curl
 
 ```bash
 curl -X POST http://localhost:3000/api/contact \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "John Doe",
-    "email": "john@example.com",
+    "firstName": "Mario",
+    "lastName": "Rossi",
+    "email": "mario@example.com",
     "company": "ACME Corp",
-    "message": "I am interested in your services."
+    "message": "Vorrei maggiori informazioni"
   }'
 ```
 
-Expected response:
+Risposta attesa:
 
 ```json
 {
   "success": true,
-  "message": "Your message has been received. We'll get back to you soon!",
-  "issueUrl": "https://github.com/owner/repo/issues/1"
+  "message": "Grazie! Ti contatteremo a breve."
 }
 ```
 
-### 6. Configure GitHub notifications
+## Notifiche Email
 
-Make sure you receive email notifications for new Issues:
+GitHub manda automaticamente email quando ricevi un nuovo contatto. Per riceverle:
 
-1. Go to [GitHub Settings → Notifications](https://github.com/settings/notifications)
-2. Under **"Participating"**, enable **"Email"**
-3. You'll now receive emails when new Issues are created
+1. Vai su https://github.com/settings/notifications
+2. Abilita "Email" nelle notifiche
+3. Fatto! Riceverai un'email per ogni contatto
 
-## API Endpoints
+Ogni email contiene:
+- Nome e cognome
+- Email del contatto
+- Azienda (se fornita)
+- Messaggio completo
+- Data e ora
 
-### `POST /api/contact`
+## Deploy in Produzione
 
-Creates a new lead in GitHub Issues.
+### Vercel (consigliato)
 
-**Request body:**
-
-```json
-{
-  "name": "string (required)",
-  "email": "string (required, valid email)",
-  "company": "string (optional)",
-  "message": "string (required)"
-}
-```
-
-**Success response (201):**
-
-```json
-{
-  "success": true,
-  "message": "Your message has been received. We'll get back to you soon!",
-  "issueUrl": "https://github.com/owner/repo/issues/123"
-}
-```
-
-**Error response (400/500):**
-
-```json
-{
-  "error": "Error message describing what went wrong"
-}
-```
-
-## GitHub Issue Format
-
-Each submission creates an Issue with:
-
-**Title:** `🎯 Lead: John Doe (ACME Corp)`
-
-**Body:**
-
-```markdown
-## Lead Information
-
-| Field | Value |
-|-------|-------|
-| **Name** | John Doe |
-| **Email** | john@example.com |
-| **Company** | ACME Corp |
-| **Submitted** | 2024-01-15T10:30:00.000Z |
-
-## Message
-
-I am interested in your services.
-
----
-
-*This issue was automatically created by the Lead Capture System*
-```
-
-**Labels:** `lead`, `contact-form`
-
-## Deployment
-
-### Deploy to Vercel
-
-1. Push your code to GitHub
-2. Import the repository in [Vercel](https://vercel.com)
-3. Add environment variables:
+1. Push del codice su GitHub (già fatto ✓)
+2. Importa il repo su [Vercel](https://vercel.com)
+3. Aggiungi le variabili d'ambiente:
    - `GITHUB_TOKEN`
    - `GITHUB_REPO`
-4. Deploy!
+4. Deploy automatico!
 
-### Environment Variables (Production)
+### Variabili d'Ambiente (Produzione)
 
-In your hosting platform (Vercel, Netlify, etc.), set:
+Nel tuo hosting (Vercel, Netlify, ecc.) imposta:
 
-- `GITHUB_TOKEN`: Your GitHub Personal Access Token
-- `GITHUB_REPO`: Format `owner/repo-name`
+- `GITHUB_TOKEN`: Il token GitHub che hai creato
+- `GITHUB_REPO`: Formato `username/nome-repo`
 
-## Security Notes
+## Analisi Costi
 
-- ⚠️ **Never commit `.env.local` or `.env`** to version control
-- ✅ The `.env.example` file is safe to commit (contains no secrets)
-- ✅ GitHub token has minimal permissions (only `repo` scope)
-- ✅ API route validates all inputs before processing
-- ✅ Email validation prevents invalid submissions
+| Servizio | Costo |
+|----------|-------|
+| GitHub (storage) | **€0** |
+| Email automatiche | **€0** |
+| Vercel hosting | **€0** (piano hobby) |
+| **Totale** | **€0/mese** |
 
-## Cost Analysis
+## Personalizzazione
 
-| Service | Cost |
-|---------|------|
-| GitHub (private repo) | **$0** (free tier) |
-| GitHub Issues | **$0** (unlimited) |
-| GitHub email notifications | **$0** (built-in) |
-| Vercel hosting | **$0** (hobby tier) |
-| **Total** | **$0/month** |
+### Cambiare i campi del form
 
-## Customization
+Modifica `src/app/page.tsx` per aggiungere/rimuovere campi.
 
-### Change form fields
+### Cambiare lo stile
 
-Edit `src/app/page.tsx` to add/remove fields.
+Il form usa Tailwind CSS. Puoi modificare i colori in `src/app/page.tsx`:
 
-### Change Issue format
-
-Edit `src/app/api/contact/route.ts` to customize the Issue title, body, or labels.
-
-### Add more labels
-
-In `src/app/api/contact/route.ts`, modify the `labels` array:
-
-```typescript
-labels: ['lead', 'contact-form', 'high-priority'],
+```tsx
+// Cambia il colore del bottone
+className="bg-blue-600 hover:bg-blue-700"  // blu attuale
+className="bg-green-600 hover:bg-green-700"  // verde
+className="bg-purple-600 hover:bg-purple-700"  // viola
 ```
+
+### Cambiare la lingua
+
+Il form è in italiano. Per l'inglese, modifica i testi in `src/app/page.tsx`:
+
+```tsx
+<h1>Contact Us</h1>
+<p>Fill out the form and we'll get back to you soon.</p>
+```
+
+## Sicurezza
+
+- ✅ Token GitHub mai committato (protetto da `.gitignore`)
+- ✅ Validazione email lato server
+- ✅ Validazione campi obbligatori
+- ✅ Gestione errori completa
+- ✅ HTTPS in produzione (con Vercel)
 
 ## Troubleshooting
 
-### "Server configuration error"
+### "Errore di configurazione"
 
-- Check that `.env.local` exists and has correct values
-- Verify `GITHUB_TOKEN` is set correctly
-- Verify `GITHUB_REPO` format is `owner/repo-name`
+- Verifica che `.env.local` esista
+- Controlla che `GITHUB_TOKEN` sia corretto
+- Verifica che `GITHUB_REPO` sia nel formato `username/repo`
 
-### "Failed to create GitHub Issue"
+### "Email non valida"
 
-- Check that your GitHub token has `repo` permission
-- Verify the repository name is correct
-- Check GitHub API status: https://www.githubstatus.com/
+L'utente deve inserire un'email nel formato corretto (`nome@dominio.com`)
 
-### Form submission fails silently
+### Non ricevo email
 
-- Open browser console to see error messages
-- Check Network tab for API response
-- Verify API route is running at `/api/contact`
+1. Controlla le impostazioni notifiche GitHub
+2. Controlla la cartella spam
+3. Verifica che il token abbia il permesso `repo`
 
-## License
+### Il form non funziona
+
+1. Apri la console del browser (F12)
+2. Controlla errori nella Network tab
+3. Verifica che il server sia avviato (`npm run dev`)
+
+## Dove Vengono Salvati i Dati?
+
+I contatti vengono salvati nel repository GitHub (tab "Issues"). Ogni contatto è un nuovo "issue" con:
+
+- Titolo: Nome completo e azienda
+- Contenuto: Tutti i dati del contatto
+- Label: "contatto" per trovarlo facilmente
+
+Puoi vedere tutti i contatti su: `https://github.com/tuo-username/lead-capture-system/issues`
+
+## Licenza
 
 MIT
 

@@ -1,51 +1,53 @@
-# Landing Page Contact Form
+# GitForms
 
-**Form di contatto gratuito per la tua landing page** con email automatiche.
+**Zero-cost contact forms for your landing page** - powered by GitHub Issues.
 
-Ogni volta che qualcuno compila il form, ricevi un'email di notifica. Zero costi mensili, nessun database esterno da gestire.
+Every time someone submits your contact form, you receive an automatic email notification. No monthly fees, no external database.
 
-## Caratteristiche
+> **GitForms** = Free alternative to Typeform, Tally, and FormSpree
 
-- ✅ **100% Configurabile senza codice** (JSON files)
-- ✅ Email automatiche quando ricevi un contatto
-- ✅ Multilingua (IT/EN) con auto-rilevamento browser
-- ✅ Stile personalizzabile (colori, bordi, ombre)
-- ✅ Testi personalizzabili (etichette, messaggi)
-- ✅ Next.js 13+ con App Router
+## Features
+
+- ✅ **100% Configurable without code** (JSON files)
+- ✅ Automatic email notifications for every submission
+- ✅ Multilingual (IT/EN) with auto browser language detection
+- ✅ Customizable styling (colors, borders, shadows)
+- ✅ Customizable text (labels, messages, buttons)
+- ✅ Next.js 14 with App Router
 - ✅ TypeScript
 - ✅ Tailwind CSS
-- ✅ **Deploy ovunque** (Vercel, Netlify, Railway, Docker, AWS...)
-- ✅ Completamente gratuito
+- ✅ **Deploy anywhere** (Vercel, Netlify, Railway, Docker, AWS...)
+- ✅ Completely free
 
-## Come Funziona
+## How It Works
 
 ```
-Utente compila form → Dati salvati → Email automatica inviata
+User fills form → Data saved to GitHub Issue → Email notification sent
 ```
 
-## Setup Rapido
+## Quick Setup
 
 ```bash
-# 1. Clona
-git clone https://github.com/omega-suite-finance/lead-capture-system.git
-cd lead-capture-system
+# 1. Clone
+git clone https://github.com/omega-suite-finance/gitforms.git
+cd gitforms
 
-# 2. Installa
+# 2. Install
 npm install
 
-# 3. Configura
+# 3. Configure
 cp .env.example .env.local
-# Modifica .env.local con il tuo GITHUB_TOKEN e GITHUB_REPO
+# Edit .env.local with your GITHUB_TOKEN and GITHUB_REPO
 
-# 4. Avvia
+# 4. Start
 npm run dev
 ```
 
-Apri http://localhost:3000
+Open http://localhost:3000
 
-## 🎨 Personalizzazione (ZERO Codice!)
+## 🎨 Customization (ZERO Code!)
 
-### 1. Cambia Tutti i Colori
+### 1. Change All Colors
 
 **File:** `config/theme.json`
 
@@ -53,7 +55,7 @@ Apri http://localhost:3000
 {
   "colors": {
     "primary": {
-      "DEFAULT": "#10b981",  // Verde invece di blu
+      "DEFAULT": "#10b981",  // Green instead of blue
       "hover": "#059669",
       "ring": "#34d399"
     }
@@ -61,41 +63,41 @@ Apri http://localhost:3000
 }
 ```
 
-**Altri colori popolari:**
-- Viola: `#8b5cf6`, `#7c3aed`, `#a78bfa`
-- Arancione: `#f97316`, `#ea580c`, `#fb923c`
-- Rosa: `#ec4899`, `#db2777`, `#f472b6`
+**Popular colors:**
+- Purple: `#8b5cf6`, `#7c3aed`, `#a78bfa`
+- Orange: `#f97316`, `#ea580c`, `#fb923c`
+- Pink: `#ec4899`, `#db2777`, `#f472b6`
 
-### 2. Cambia Tutti i Testi
+### 2. Change All Text
 
 **File:** `config/translations.json`
 
 ```json
 {
   "it": {
-    "title": "Richiedi Informazioni",  // Cambia "Contattaci"
+    "title": "Richiedi Informazioni",  // Change "Contattaci"
     "fields": {
-      "company": "Società"  // Cambia "Azienda" in "Società"
+      "company": "Società"  // Change "Azienda" to "Società"
     },
     "buttons": {
-      "submit": "Richiedi Contatto"  // Cambia bottone
+      "submit": "Richiedi Contatto"  // Change button
     }
   }
 }
 ```
 
-### 3. Cambia la Lingua Default
+### 3. Change Default Language
 
 **File:** `.env.local`
 
 ```env
-NEXT_PUBLIC_DEFAULT_LOCALE=it   # Forza italiano
-# oppure
-NEXT_PUBLIC_DEFAULT_LOCALE=en   # Forza inglese
-# oppure rimuovi per auto-detection
+NEXT_PUBLIC_DEFAULT_LOCALE=it   # Force Italian
+# or
+NEXT_PUBLIC_DEFAULT_LOCALE=en   # Force English
+# or remove for auto-detection
 ```
 
-### 4. Aggiungi Nuova Lingua (es. Francese)
+### 4. Add New Language (e.g., French)
 
 **File:** `config/translations.json`
 
@@ -117,30 +119,30 @@ NEXT_PUBLIC_DEFAULT_LOCALE=en   # Forza inglese
 }
 ```
 
-Poi aggiorna `src/app/translations.ts`:
+Then update `src/app/translations.ts`:
 
 ```typescript
 export type Locale = 'it' | 'en' | 'fr'
 ```
 
-## 📁 File di Configurazione
+## 📁 Configuration Files
 
-| File | Cosa Configuri |
-|------|----------------|
-| **`config/theme.json`** | Colori, bordi, ombre, stile |
-| **`config/translations.json`** | TUTTI i testi (titolo, campi, messaggi, bottoni) |
-| **`.env.local`** | Token GitHub, repo, lingua default |
+| File | What You Configure |
+|------|-------------------|
+| **`config/theme.json`** | Colors, borders, shadows, styling |
+| **`config/translations.json`** | ALL text (title, fields, messages, buttons) |
+| **`.env.local`** | GitHub token, repo, default language |
 
-**Modifica solo questi 3 file = personalizzazione completa!**
+**Edit only these 3 files = complete customization!**
 
-## Campi del Form
+## Form Fields
 
-Tutti i campi sono **obbligatori**:
-- Nome
-- Cognome
+All fields are **required**:
+- First Name
+- Last Name
 - Email
-- Azienda
-- Messaggio
+- Company
+- Message
 
 ## Test
 
@@ -160,68 +162,68 @@ curl -X POST http://localhost:3000/api/contact \
 
 ### 1. Vercel (Recommended) ⚡
 
-**Più semplice per Next.js** - 2 click, zero configurazione.
+**Easiest for Next.js** - 2 clicks, zero configuration.
 
 ```bash
-# Installa Vercel CLI (opzionale)
+# Install Vercel CLI (optional)
 npm i -g vercel
 
 # Deploy
 vercel
 ```
 
-**Oppure via Dashboard:**
-1. Push su GitHub
-2. Importa su [vercel.com](https://vercel.com/new)
-3. Aggiungi environment variables:
+**Or via Dashboard:**
+1. Push to GitHub
+2. Import on [vercel.com](https://vercel.com/new)
+3. Add environment variables:
    - `GITHUB_TOKEN`
    - `GITHUB_REPO`
-   - `NEXT_PUBLIC_DEFAULT_LOCALE` (opzionale)
-4. Deploy automatico!
+   - `NEXT_PUBLIC_DEFAULT_LOCALE` (optional)
+4. Auto deploy!
 
-**Free Tier:** Illimitato per progetti personali
+**Free Tier:** Unlimited for personal projects
 
 ---
 
 ### 2. Netlify
 
-**Ottima alternativa a Vercel** - 2 click, ottimo free tier.
+**Great Vercel alternative** - 2 clicks, great free tier.
 
-1. Push su GitHub
-2. Importa su [netlify.com](https://app.netlify.com/start)
+1. Push to GitHub
+2. Import on [netlify.com](https://app.netlify.com/start)
 3. Build settings:
    - **Build command:** `npm run build`
    - **Publish directory:** `.next`
 4. Environment variables:
    - `GITHUB_TOKEN`
    - `GITHUB_REPO`
-   - `NEXT_PUBLIC_DEFAULT_LOCALE` (opzionale)
+   - `NEXT_PUBLIC_DEFAULT_LOCALE` (optional)
 5. Deploy!
 
-**Free Tier:** 100GB bandwidth/mese
+**Free Tier:** 100GB bandwidth/month
 
 ---
 
 ### 3. Railway
 
-**Deploy rapido con database inclusi** - 3 click, buon free tier.
+**Fast deploy with included databases** - 3 clicks, good free tier.
 
-1. Push su GitHub
-2. Vai su [railway.app](https://railway.app)
+1. Push to GitHub
+2. Go to [railway.app](https://railway.app)
 3. New Project → Deploy from GitHub
-4. Aggiungi variabili d'ambiente (Dashboard → Variables)
-5. Railway auto-rileva Next.js e deploya
+4. Add environment variables (Dashboard → Variables)
+5. Railway auto-detects Next.js and deploys
 
-**Free Tier:** $5 credit/mese (~500h runtime)
+**Free Tier:** $5 credit/month (~500h runtime)
 
 ---
 
 ### 4. Render.com
 
-**Alternative con free tier** - Auto-sleep dopo inattività.
+**Alternative with free tier** - Auto-sleep after inactivity.
 
-1. Push su GitHub
-2. New Web Service su [render.com](https://render.com)
+1. Push to GitHub
+2. New Web Service on [render.com](https://render.com)
 3. Connect repository
 4. Settings:
    - **Build Command:** `npm install && npm run build`
@@ -230,26 +232,26 @@ vercel
    - `GITHUB_TOKEN`
    - `GITHUB_REPO`
 
-**Free Tier:** Illimitato (con auto-sleep)
+**Free Tier:** Unlimited (with auto-sleep)
 
 ---
 
 ### 5. Docker / Self-Hosted 🐳
 
-**Full control** - Deploy su qualsiasi VPS/cloud.
+**Full control** - Deploy on any VPS/cloud.
 
 ```bash
 # Build
-docker build -t lead-capture-system .
+docker build -t gitforms .
 
 # Run
 docker run -p 3000:3000 \
   -e GITHUB_TOKEN=your_token \
   -e GITHUB_REPO=your_repo \
-  lead-capture-system
+  gitforms
 ```
 
-**Con Docker Compose:**
+**With Docker Compose:**
 
 ```yaml
 # docker-compose.yml
@@ -270,15 +272,15 @@ services:
 docker-compose up -d
 ```
 
-**Costi:** VPS da €5/mese (DigitalOcean, Hetzner, Linode)
+**Cost:** VPS from €5/month (DigitalOcean, Hetzner, Linode)
 
 ---
 
 ### 6. AWS Amplify
 
-**Enterprise deployment** - Auto-scaling, CDN globale.
+**Enterprise deployment** - Auto-scaling, global CDN.
 
-1. Push su GitHub
+1. Push to GitHub
 2. AWS Console → Amplify → New App
 3. Connect repository
 4. Build settings (auto-detected):
@@ -304,24 +306,24 @@ docker-compose up -d
    - `GITHUB_TOKEN`
    - `GITHUB_REPO`
 
-**Free Tier:** 1000 build minuti/mese, 15GB storage
+**Free Tier:** 1000 build minutes/month, 15GB storage
 
 ---
 
-## 💰 Costi
+## 💰 Costs
 
-| Piattaforma | Free Tier | Costo Paid |
-|-------------|-----------|------------|
-| **GitHub** (storage) | ✅ Illimitato | €0 |
-| **GitHub** (email) | ✅ Illimitato | €0 |
-| **Vercel** | ✅ Illimitato (personal) | €20/mese (team) |
-| **Netlify** | ✅ 100GB bandwidth | €19/mese (pro) |
-| **Railway** | ✅ $5 credit/mese | $5/mese per $5 usage |
-| **Render.com** | ✅ Con auto-sleep | $7/mese (sempre attivo) |
-| **Docker VPS** | ❌ | €5-20/mese |
+| Platform | Free Tier | Paid Cost |
+|----------|-----------|-----------|
+| **GitHub** (storage) | ✅ Unlimited | €0 |
+| **GitHub** (email) | ✅ Unlimited | €0 |
+| **Vercel** | ✅ Unlimited (personal) | €20/month (team) |
+| **Netlify** | ✅ 100GB bandwidth | €19/month (pro) |
+| **Railway** | ✅ $5 credit/month | $5/month per $5 usage |
+| **Render.com** | ✅ With auto-sleep | $7/month (always on) |
+| **Docker VPS** | ❌ | €5-20/month |
 | **AWS Amplify** | ✅ 1000 build min | Pay-as-you-go |
 
-**Raccomandazione:** Vercel o Netlify per €0/mese garantito.
+**Recommendation:** Vercel or Netlify for guaranteed €0/month.
 
 ---
 
@@ -339,9 +341,9 @@ docker-compose up -d
 
 ---
 
-## Esempi Personalizzazione
+## Customization Examples
 
-### Landing Page Aziendale B2B
+### B2B Corporate Landing Page
 ```json
 // config/translations.json
 {
@@ -353,10 +355,10 @@ docker-compose up -d
 }
 
 // config/theme.json
-{ "colors": { "primary": { "DEFAULT": "#1e3a8a" } } }  // Blu corporate
+{ "colors": { "primary": { "DEFAULT": "#1e3a8a" } } }  // Corporate blue
 ```
 
-### Landing Page E-commerce
+### E-commerce Landing Page
 ```json
 // config/translations.json
 {
@@ -368,13 +370,24 @@ docker-compose up -d
 }
 
 // config/theme.json
-{ "colors": { "primary": { "DEFAULT": "#dc2626" } } }  // Rosso vendita
+{ "colors": { "primary": { "DEFAULT": "#dc2626" } } }  // Sales red
 ```
 
-## Licenza
+## Documentation
+
+- **Deployment Guide:** See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed platform guides
+- **Testing Guide:** See [TESTING.md](TESTING.md) for API testing
+- **Monetization Ideas:** See [MONETIZATION.md](MONETIZATION.md) for revenue strategies
+- **SEO Setup:** See [SETUP_DISCOVERABILITY.md](SETUP_DISCOVERABILITY.md) for marketing
+
+## License
 
 MIT
 
 ## Repository
 
-https://github.com/omega-suite-finance/lead-capture-system
+https://github.com/omega-suite-finance/gitforms
+
+---
+
+**Made with ❤️ by the GitForms team** | [Star us on GitHub](https://github.com/omega-suite-finance/gitforms) ⭐

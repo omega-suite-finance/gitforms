@@ -1,14 +1,16 @@
 {
-  "name": "lead-capture-system",
+  "name": "gitforms",
   "version": "1.0.0",
   "private": true,
-  "description": "Zero-cost landing page contact form using GitHub Issues as free database. Open-source alternative to Typeform, Tally, FormSpree. Features: unlimited submissions, automatic email notifications, multilingual (IT/EN), 100% customizable without code, self-hosted, Next.js 14, TypeScript, Tailwind CSS. Perfect for startups, freelancers, agencies. MIT license.",
+  "description": "GitForms - Zero-cost contact forms using GitHub Issues as free database. Open-source alternative to Typeform, Tally, FormSpree. Features: unlimited submissions, automatic email notifications, multilingual (IT/EN), 100% customizable without code, deploy anywhere (Vercel, Netlify, Docker, AWS). Perfect for startups, freelancers, agencies. MIT license.",
   "keywords": [
+    "gitforms",
     "contact-form",
     "lead-capture",
     "typeform-alternative",
     "tally-alternative",
     "formspree-alternative",
+    "github-forms",
     "github-issues",
     "zero-cost",
     "free-form",
@@ -24,6 +26,8 @@
     "no-database",
     "serverless",
     "vercel",
+    "netlify",
+    "docker",
     "white-label",
     "customizable",
     "privacy-first",
@@ -32,14 +36,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/omega-suite-finance/lead-capture-system"
+    "url": "https://github.com/omega-suite-finance/gitforms"
   },
   "author": "omega-suite-finance",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/omega-suite-finance/lead-capture-system/issues"
+    "url": "https://github.com/omega-suite-finance/gitforms/issues"
   },
-  "homepage": "https://github.com/omega-suite-finance/lead-capture-system#readme",
+  "homepage": "https://github.com/omega-suite-finance/gitforms#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

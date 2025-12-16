@@ -382,7 +382,16 @@ docker-compose up -d
 
 ## License
 
-MIT
+CC-BY-NC-SA-4.0 (Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International)
+
+This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+**Key Terms:**
+- ✅ **Attribution** - Credit must be given to Luigi Greco
+- ❌ **NonCommercial** - No commercial use without permission
+- ✅ **ShareAlike** - Derivatives must use the same license
+
+See [LICENSE](LICENSE) file for full legal text.
 
 ## Repository
 

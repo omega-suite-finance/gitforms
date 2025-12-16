@@ -168,4 +168,13 @@ See `MONETIZATION.md` for 6 revenue models.
 
 ## License
 
-MIT - Free to use commercially
+CC-BY-NC-SA-4.0 (Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International)
+
+**Key Terms:**
+- ✅ Attribution required (credit to Luigi Greco)
+- ❌ No commercial use without explicit permission
+- ✅ ShareAlike (derivatives must use same license)
+
+For commercial licensing inquiries, contact: [your-email]
+
+Full legal text: See [LICENSE](../LICENSE) file
